@@ -1,7 +1,7 @@
 ---
 import SEO from '../SEO.astro'
 import LanguagePicker from '../LanguagePicker.astro'
-import { t, pageUrl, textDirection } from '../../i18n/translations'
+import { t, pageUrl, textDirection, localizedPath } from '../../i18n/translations'
 import '../../styles/global.css'
 
 export interface Props {
@@ -43,7 +43,7 @@ const url = pageUrl('/', locale)
             </section>
 
             <section class="project-card">
-                <a class="project-card__link" href={`/project-warp`}>
+                <a class="project-card__link" href={localizedPath('/project-warp', locale)}>
                     <img class="project-card__logo" src="/warp-logo.svg" alt="WARP" />
                     <h2 class="project-card__title">{t(locale, 'home.warpCardTitle')}</h2>
                     <p class="project-card__text">{t(locale, 'home.warpCardText')}</p>

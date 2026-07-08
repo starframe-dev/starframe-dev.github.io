@@ -1,7 +1,7 @@
 ---
 import SEO from '../SEO.astro'
 import LanguagePicker from '../LanguagePicker.astro'
-import { t, pageUrl, textDirection } from '../../i18n/translations'
+import { t, pageUrl, textDirection, localizedPath } from '../../i18n/translations'
 import '../../styles/global.css'
 
 export interface Props {
@@ -24,7 +24,7 @@ const url = pageUrl('/project-warp', locale)
             <LanguagePicker currentLocale={locale} currentPath="/project-warp" />
 
             <header class="warp-header">
-                <a class="warp-header__home" href={`/`}>← {t(locale, 'home.title')}</a>
+                <a class="warp-header__home" href={localizedPath('/', locale)}>← {t(locale, 'home.title')}</a>
                 <img class="warp-header__logo" src="/warp-logo.svg" alt="WARP" />
             </header>
 
