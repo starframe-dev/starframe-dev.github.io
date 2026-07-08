@@ -1,0 +1,35 @@
+---
+import "../styles/global.css"
+import Hero from "../components/sections/Hero.astro"
+import About from "../components/sections/About.astro"
+import GitHub from "../components/sections/GitHub.astro"
+import Footer from "../components/sections/Footer.astro"
+---
+
+<html lang="ru">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <meta
+            name="description"
+            content="Starframe — организация, которая создаёт кодовые библиотеки, инструменты и проекты для разработчиков."
+        />
+        <title>Starframe</title>
+    </head>
+    <body>
+        <main class="page">
+            <Hero />
+            <About />
+            <GitHub />
+            <Footer />
+        </main>
+    </body>
+</html>
