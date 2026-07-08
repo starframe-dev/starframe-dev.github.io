@@ -1,7 +1,8 @@
 ---
 import SEO from '../SEO.astro'
 import LanguagePicker from '../LanguagePicker.astro'
-import { t, pageUrl } from '../../i18n/translations'
+import { t, pageUrl, textDirection } from '../../i18n/translations'
+import '../../styles/global.css'
 
 export interface Props {
     locale: string
@@ -11,16 +12,16 @@ const { locale } = Astro.props
 const year = new Date().getFullYear()
 const title = t(locale, 'warp.title')
 const description = t(locale, 'warp.description')
-const url = pageUrl('/warp', locale)
+const url = pageUrl('/project-warp', locale)
 ---
 
-<html lang={locale}>
+<html lang={locale} dir={textDirection(locale)}>
     <head>
-        <SEO title={title} description={description} url={url} locale={locale} path="/warp" />
+        <SEO title={title} description={description} url={url} locale={locale} path="/project-warp" />
     </head>
     <body>
         <main class="warp-page">
-            <LanguagePicker currentLocale={locale} currentPath="/warp" />
+            <LanguagePicker currentLocale={locale} currentPath="/project-warp" />
 
             <header class="warp-header">
                 <a class="warp-header__home" href={`/`}>← {t(locale, 'home.title')}</a>
