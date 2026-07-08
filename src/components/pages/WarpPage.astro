@@ -1,0 +1,268 @@
+---
+import SEO from '../SEO.astro'
+import LanguagePicker from '../LanguagePicker.astro'
+import { t, pageUrl } from '../../i18n/translations'
+
+export interface Props {
+    locale: string
+}
+
+const { locale } = Astro.props
+const year = new Date().getFullYear()
+const title = t(locale, 'warp.title')
+const description = t(locale, 'warp.description')
+const url = pageUrl('/warp', locale)
+---
+
+<html lang={locale}>
+    <head>
+        <SEO title={title} description={description} url={url} locale={locale} path="/warp" />
+    </head>
+    <body>
+        <main class="warp-page">
+            <LanguagePicker currentLocale={locale} currentPath="/warp" />
+
+            <header class="warp-header">
+                <a class="warp-header__home" href={`/`}>← {t(locale, 'home.title')}</a>
+                <img class="warp-header__logo" src="/warp-logo.svg" alt="WARP" />
+            </header>
+
+            <section class="warp-hero">
+                <img class="warp-hero__logo" src="/warp-logo.svg" alt="WARP" />
+                <h1 class="warp-hero__title">WARP</h1>
+                <p class="warp-hero__subtitle">{t(locale, 'warp.subtitle')}</p>
+                <p class="warp-hero__description">{t(locale, 'warp.descriptionText')}</p>
+            </section>
+
+            <section class="warp-features">
+                <h2 class="warp-features__title">{t(locale, 'warp.featuresTitle')}</h2>
+                <div class="warp-features__grid">
+                    <article class="warp-feature">
+                        <h3 class="warp-feature__title">TabGroup</h3>
+                        <p class="warp-feature__text">{t(locale, 'warp.featureTabGroup')}</p>
+                    </article>
+                    <article class="warp-feature">
+                        <h3 class="warp-feature__title">Splits & Flex</h3>
+                        <p class="warp-feature__text">{t(locale, 'warp.featureSplits')}</p>
+                    </article>
+                    <article class="warp-feature">
+                        <h3 class="warp-feature__title">Modal & Popover</h3>
+                        <p class="warp-feature__text">{t(locale, 'warp.featureModal')}</p>
+                    </article>
+                    <article class="warp-feature">
+                        <h3 class="warp-feature__title">Input</h3>
+                        <p class="warp-feature__text">{t(locale, 'warp.featureInput')}</p>
+                    </article>
+                    <article class="warp-feature">
+                        <h3 class="warp-feature__title">Scrollable & Selectable</h3>
+                        <p class="warp-feature__text">{t(locale, 'warp.featureScrollable')}</p>
+                    </article>
+                    <article class="warp-feature">
+                        <h3 class="warp-feature__title">Focus API</h3>
+                        <p class="warp-feature__text">{t(locale, 'warp.featureFocus')}</p>
+                    </article>
+                </div>
+            </section>
+
+            <section class="warp-code">
+                <h2 class="warp-code__title">{t(locale, 'warp.codeTitle')}</h2>
+                <div class="warp-code__block">
+                    <pre set:html={t(locale, 'warp.code')} />
+                </div>
+            </section>
+
+            <section class="warp-github">
+                <a
+                    class="warp-github__link"
+                    href="https://github.com/starframe-dev/warp"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    {t(locale, 'warp.githubCta')}
+                </a>
+            </section>
+
+            <footer class="warp-footer">
+                <p>{t(locale, 'warp.footer', { year })}</p>
+            </footer>
+        </main>
+
+        <style>
+            .warp-page {
+                width: 100%;
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 0 1.5rem;
+            }
+
+            .warp-header {
+                width: 100%;
+                max-width: 56rem;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 1.5rem 0;
+            }
+
+            .warp-header__home {
+                color: #8fa3ad;
+                text-decoration: none;
+                font-size: 0.95rem;
+                transition: color 0.2s ease;
+            }
+
+            .warp-header__home:hover {
+                color: #66fcf1;
+            }
+
+            .warp-header__logo {
+                height: 2rem;
+                width: auto;
+            }
+
+            .warp-hero {
+                width: 100%;
+                max-width: 48rem;
+                text-align: center;
+                padding: 5rem 0 3rem;
+            }
+
+            .warp-hero__logo {
+                height: 6rem;
+                width: auto;
+                margin-bottom: 1.5rem;
+                filter: drop-shadow(0 0 20px rgba(102, 252, 241, 0.2));
+            }
+
+            .warp-hero__title {
+                color: #66fcf1;
+                font-size: clamp(2.5rem, 8vw, 4.5rem);
+                font-weight: 700;
+                letter-spacing: -0.04em;
+                line-height: 1;
+                margin-bottom: 1rem;
+                font-family: "Space Grotesk", sans-serif;
+            }
+
+            .warp-hero__subtitle {
+                color: #8fa3ad;
+                font-size: clamp(1.1rem, 3vw, 1.5rem);
+                max-width: 36rem;
+                margin: 0 auto 1.5rem;
+            }
+
+            .warp-hero__description {
+                color: #b0b8c8;
+                font-size: 1.1rem;
+                max-width: 40rem;
+                margin: 0 auto;
+            }
+
+            .warp-features {
+                width: 100%;
+                max-width: 48rem;
+                padding: 2rem 0 4rem;
+            }
+
+            .warp-features__title {
+                color: #66fcf1;
+                font-size: 1.75rem;
+                text-align: center;
+                margin-bottom: 2rem;
+            }
+
+            .warp-features__grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+                gap: 1rem;
+            }
+
+            .warp-feature {
+                background: rgba(255, 255, 255, 0.03);
+                border: 1px solid rgba(102, 252, 241, 0.12);
+                border-radius: 1rem;
+                padding: 1.25rem;
+                transition: transform 0.2s ease, border-color 0.2s ease;
+            }
+
+            .warp-feature:hover {
+                transform: translateY(-4px);
+                border-color: rgba(102, 252, 241, 0.3);
+            }
+
+            .warp-feature__title {
+                color: #e2e4f0;
+                font-size: 1.1rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .warp-feature__text {
+                color: #8fa3ad;
+                font-size: 0.95rem;
+            }
+
+            .warp-code {
+                width: 100%;
+                max-width: 40rem;
+                padding: 2rem 0 4rem;
+            }
+
+            .warp-code__title {
+                color: #66fcf1;
+                font-size: 1.5rem;
+                text-align: center;
+                margin-bottom: 1.5rem;
+            }
+
+            .warp-code__block {
+                background: #0b0d14;
+                border: 1px solid rgba(102, 252, 241, 0.12);
+                border-radius: 1rem;
+                padding: 1.5rem;
+                overflow-x: auto;
+            }
+
+            .warp-code__block pre {
+                margin: 0;
+                color: #e2e4f0;
+                font-family: "SF Mono", Monaco, "Cascadia Code", monospace;
+                font-size: 0.9rem;
+                line-height: 1.5;
+            }
+
+            .warp-github {
+                padding: 2rem 0 5rem;
+            }
+
+            .warp-github__link {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.75rem;
+                background: linear-gradient(135deg, #66fcf1, #45a29e);
+                color: #05060a;
+                font-size: 1.1rem;
+                font-weight: 600;
+                padding: 1rem 2rem;
+                border-radius: 9999px;
+                text-decoration: none;
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
+                box-shadow: 0 0 20px rgba(102, 252, 241, 0.2);
+            }
+
+            .warp-github__link:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 0 30px rgba(102, 252, 241, 0.35);
+            }
+
+            .warp-footer {
+                margin-top: auto;
+                padding: 2.5rem 0;
+                text-align: center;
+                color: #5b6573;
+                font-size: 0.875rem;
+            }
+        </style>
+    </body>
+</html>

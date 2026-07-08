@@ -1,0 +1,58 @@
+---
+import { locales, defaultLocale, localizedPath } from '../i18n/translations'
+
+export interface Props {
+    currentLocale: string
+    currentPath: string
+}
+
+const { currentLocale, currentPath } = Astro.props
+---
+
+<nav class="language-picker" aria-label="Language">
+    {locales.map((locale) => {
+        const isActive = locale.code === currentLocale
+        const href = localizedPath(currentPath, locale.code)
+        return (
+            <a
+                class={`language-picker__link${isActive ? ' language-picker__link--active' : ''}`}
+                href={href}
+                hreflang={locale.code}
+                aria-current={isActive ? 'page' : undefined}
+            >
+                {locale.label}
+            </a>
+        )
+    })}
+</nav>
+
+<style>
+    .language-picker {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 1rem 0;
+    }
+
+    .language-picker__link {
+        color: #8fa3ad;
+        text-decoration: none;
+        font-size: 0.875rem;
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        border: 1px solid transparent;
+        transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .language-picker__link:hover {
+        color: #66fcf1;
+        border-color: rgba(102, 252, 241, 0.3);
+    }
+
+    .language-picker__link--active {
+        color: #05060a;
+        background: #66fcf1;
+        border-color: #66fcf1;
+    }
+</style>

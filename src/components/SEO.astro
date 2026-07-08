@@ -1,0 +1,61 @@
+---
+export interface Props {
+    title: string
+    description: string
+    url: string
+    locale: string
+    path: string
+    image?: string
+}
+
+const { title, description, url, locale, path, image = '/logo.svg' } = Astro.props
+const siteUrl = 'https://starframe-dev.github.io'
+const imageUrl = `${siteUrl}${image}`
+
+const alternateUrls = [
+    { lang: 'ru', href: `${siteUrl}${path === '/warp' ? '/warp' : ''}` },
+    { lang: 'en', href: `${siteUrl}/en${path === '/warp' ? '/warp' : ''}` },
+    { lang: 'es', href: `${siteUrl}/es${path === '/warp' ? '/warp' : ''}` },
+    { lang: 'de', href: `${siteUrl}/de${path === '/warp' ? '/warp' : ''}` },
+    { lang: 'fr', href: `${siteUrl}/fr${path === '/warp' ? '/warp' : ''}` },
+    { lang: 'ja', href: `${siteUrl}/ja${path === '/warp' ? '/warp' : ''}` },
+    { lang: 'zh', href: `${siteUrl}/zh${path === '/warp' ? '/warp' : ''}` },
+    { lang: 'pt', href: `${siteUrl}/pt${path === '/warp' ? '/warp' : ''}` },
+    { lang: 'ko', href: `${siteUrl}/ko${path === '/warp' ? '/warp' : ''}` },
+    { lang: 'ar', href: `${siteUrl}/ar${path === '/warp' ? '/warp' : ''}` },
+]
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width" />
+<meta name="generator" content={Astro.generator} />
+<meta name="description" content={description} />
+<meta name="robots" content="index, follow" />
+
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={url} />
+<meta property="og:type" content="website" />
+<meta property="og:image" content={imageUrl} />
+<meta property="og:locale" content={locale} />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageUrl} />
+
+<link rel="canonical" href={url} />
+{alternateUrls.map((alt) => <link rel="alternate" hreflang={alt.lang} href={alt.href} />)}
+<link rel="alternate" hreflang="x-default" href={alternateUrls[0].href} />
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="apple-touch-icon" href="/logo.svg" />
+
+<script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: title,
+    description: description,
+    url: url,
+    inLanguage: locale,
+})} />
